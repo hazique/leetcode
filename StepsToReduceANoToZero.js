@@ -27,3 +27,5 @@ var countSteps = function(num) {
         return num - 1;
     
 }
+
+console.log("No of steps is: ", numberOfSteps(529));
