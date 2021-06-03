@@ -21,7 +21,7 @@
                 "<node_internals>/**"
             ],
             "program": "${file}",
-            "runtimeExecutable": "/home/hazique/.custom-nvm-dir/versions/node/v14.5.0/bin/node"
+            "runtimeExecutable": "/home/hazique.quazi@3pillar.corp/.nvm/versions/node/v14.13.1/bin/node"
         }
     ]
 }

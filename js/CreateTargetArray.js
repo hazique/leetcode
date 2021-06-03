@@ -13,9 +13,13 @@
  * @return {number[]}
  */
 var createTargetArray = function(nums, index) {
-    let targetArray = [];
-    for (let ind = 0; ind < nums.length; ind++){
-        targetArray[ind] = nums[index[ind]];
+    let targetArray = [0];
+    for (let ind = 0; ind < index.length; ind++){
+        const location = index[ind];
+        // targetArray[location] = nums[location];
+        targetArray.splice(location, 0, nums[location]);
     }
     return targetArray;
 };
+
+console.log(createTargetArray([0,1,2,3,4],[0,1,2,2,1]));
