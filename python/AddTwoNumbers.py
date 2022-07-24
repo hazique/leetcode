@@ -4,7 +4,7 @@
 #         self.val = val
 #         self.next = next
 
-from .listNode import ListNode
+from listNode import ListNode
 from typing import Optional
 
 
