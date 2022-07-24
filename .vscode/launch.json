@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "type": "java",
             "name": "Launch Java",
             "request": "launch",
@@ -21,7 +28,42 @@
                 "<node_internals>/**"
             ],
             "program": "${file}",
-            "runtimeExecutable": "/home/hazique.quazi@3pillar.corp/.nvm/versions/node/v14.13.1/bin/node"
+            "runtimeExecutable": "/Users/hazique/.nvm/versions/node/v16.7.0/bin/node"
+        },
+        {
+            "name": "BUILD AND DEBUG ACTIVE FILE - clang++",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "BUILD ACTIVE FILE - clang++"
+        },
+        {
+            "name": "BUILD AND DEBUG ACTIVE FILE - lldb",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "BUILD ACTIVE FILE - clang++"
+        },
+        {
+            "name": "(lldb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "BUILD ACTIVE FILE - clang++"
         }
     ]
 }

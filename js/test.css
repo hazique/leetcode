@@ -1,0 +1,44 @@
+$button: #EFEFEF;
+$active: darken($button, 5%);
+
+* {
+	box-sizing: border-box;
+}
+.numpad {
+	width: 420px;
+	height: 500px;
+	
+	display: flex;
+	flex-flow: row wrap;
+}
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1 0 33.3333%;
+	
+	background-color: $button;
+	color: black;
+	border: 1px solid #334257;
+	
+	&:hover {
+		background-color: $active;
+	}
+}
+
+.display {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	vertical-align: center;
+	
+	flex: 1 0 100%;
+	
+	background-color: $button;
+	color: black;
+	border: 1px solid #334257;
+	
+	&:hover {
+		background-color: $active;
+	}
+}

@@ -1,0 +1,235 @@
+Backend
+
+1) Given a list of integers, return a tuple containing the sum of all odd values and the product of all even values.
+Ex: [4,2,5,7,3,6,9] => (24, 48)
+
+def listToTuple(list):
+
+    odd_sum = 0
+    product = 1
+
+    for item in list:
+        if item % 2 == 0:
+            product *= item
+        else:
+            odd_sum += item
+    
+    return (odd_sum, product)
+
+
+
+
+2) Given a string written in kebab-case, convert it to SCREAMING_SNAKE_CASE
+Ex: "electricity-is-really-just-organized-lightning" => "ELECTRICITY_IS_REALLY_JUST_ORGANIZED_LIGHTNING"
+
+def kebabToScreamingSnake(str):
+
+    str = str.upper().replace('-', '_')
+
+    return str
+
+
+3) A product can be made of multiple parts, which themselves can be made of more parts. Given a final product and a dictionary of key-value pairs, where the product is the key and a list of parts are the values, write a function to return the count of each part that is needed to construct the final product.
+
+parts = {
+        'A': ['B', 'B', 'C'],
+        'B': [],
+        'C': ['D','E','F'],
+        'D': [],
+        'E': ['B','D'],
+        'F': []
+}
+
+Ex: 'A' => {'B': 3, 'D': 2, 'F': 1}
+Ex: 'F' => {'F': 1}
+
+def productCounterIterative(dict):
+
+    product_count = {}
+
+    for item in dict.keys():
+        itemParts = dict[item]
+
+        for part in itemParts:
+            if part in product_count.keys():
+                product_count[part] += 1
+            else:
+                product_count[part] = 1
+
+    return product_count
+
+4) Write the recursive version of the previous problem.  If you have already done so, write the iterative version.
+
+def productCounterRecursive(dict, key):
+
+    product_count = {}
+
+    if key is None:
+        product_count = productCounterRecursive(dict, next(iter(dict.keys())))
+
+    else:
+        for part in dict[key]:
+            if part in product_count.keys():
+                product_count[part] += 1
+            else:
+                product_count[part] = 1
+            product_count = productCounterRecursive(dict, part)
+
+    return product_count
+
+5) Write a regular expression to match any word that begins with a "#" and contains any of the following strings (case insensitive): ["odoo", "oxp", "openerp"]
+Ex: Match "#odoo", "#oxp2022", "#doyouodoo?", "#ILOVEODOO"
+
+^#[a-z][odoo|openerp|oxp][a-z]
+
+Front End
+
+6) Create a numpad and display similar to the one shown in the link using flex-box or css-grid.
+
+https://gist.github.com/jot-odoo/e8dd91a994e85248c571963b6c7c4262
+
+7) Implement the display functionality using the numpad as clickable inputs. It should behave like a calculator display (i.e. clicking digits adds them to the right).
+
+8 OPTION A) Implement the "START" button. When clicked, the calculator display should count down by 1 rapidly until it hits 0. When it finally hits 0, make the display say "Happy Birthday!"
+8 OPTION B) Implement the "RAND" button. When clicked, fetch a random int using this URL, https://www.random.org/integers/?num=1&min=1&max=1000&col=1&base=10&format=plain&rnd=new, and show it on the display.
+
+
+Javascript:
+    const buttons = document.querySelectorAll(".button");
+const displayCell = document.getElementById("display");
+
+buttons.forEach(button => {
+    if (button.innerText !== "Random" && button.innerText !== "Start"){
+        button.onclick = function(e) {
+            const buttonValue = e.target.innerText;
+            displayCell.innerText += buttonValue ;      
+        }
+    }   
+});
+
+document.getElementById("random").onclick = async function(e){
+    const response = await fetch("https://www.random.org/integers/?num=1&min=1&max=1000&col=1&base=10&format=plain&rnd=new")
+    const randomNum = await response.json();
+    displayCell.innerText = randomNum;
+}
+
+
+CSS:
+    $button: #EFEFEF;
+    $active: darken($button, 5%);
+
+* {
+    box-sizing: border-box;
+}
+.numpad {
+    width: 420px;
+    height: 500px;
+    
+    display: flex;
+    flex-flow: row wrap;
+}
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 33.3333%;
+    
+    background-color: $button;
+    color: black;
+    border: 1px solid #334257;
+    
+    &:hover {
+        background-color: $active;
+    }
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    vertical-align: center;
+    
+    flex: 1 0 100%;
+    
+    background-color: $button;
+    color: black;
+    border: 1px solid #334257;
+    
+    &:hover {
+        background-color: $active;
+    }
+}
+
+
+HTML:
+    
+    <div class="playground">
+
+    <div class="numpad">
+        <div id="display" class="display"></div>
+        <div class="button">7</div>
+        <div class="button">8</div>
+        <div class="button">9</div>
+        <div class="button">4</div>
+        <div class="button">5</div>
+        <div class="button">6</div>
+        <div class="button">1</div>
+        <div class="button">2</div>
+        <div class="button">3</div>
+        <div class="button">0</div>
+        <div id="random" class="button">Random</div>
+        <div id="start" class="button">Start</div>
+
+
+    </div>
+    
+</div>
+
+
+9) Go to https://www.odoo.com/pricing. Write a script to do the following via jQuery:
+        1. Set the number of users to 10.
+        2. Select the following apps: Website, Project, IoT Boxes
+        3. Select 5 IoT Boxes.
+        4. Show an alert with the average monthly rate when billed monthly.
+        
+        
+        $("#users").value = 10
+        $(".openerp_enterprise_pricing_app_checkbox").filter(el => arr.includes(el.name )
+        // This is going to take time but i know how to do this
+        
+Database
+
+Option 1:
+Design a database to manage library book loans.
+10a) Write SQL statements to create tables for books and loans. The loans table should have columns for the dates borrowed, due, and returned.
+
+create table books(
+    bookid int primary key,
+bookname varchar(255),
+author varchar(255),
+loanid int foreign key,
+publisher varchar(255)
+    )
+    
+create table loans(
+    loanid int references books.loanid,
+borrow_date date,
+due_date date,
+return_date date
+    )
+
+10b) Write an SQL query to list all overdue books in order from most to least overdue.
+
+select * from books where loanid in (select loanid from loans where due_date < current_date)
+
+10c) How would you populate these tables with random data for testing?
+
+In order to populate the tables with data for testing, I'll populate the books table first with random data having distinct set of bookid and loanid.
+Then for each value of loanid in the books table, I'll add an entry in the loans table. If the database doesn't allow me to do so because of relationship contraints, I'll populate the tables first and apply the primary/foreign key constraints later.
+
+
+Option 2:
+Design a database to maintain a catalog of cooking recipes.
+10a) Write SQL statements to create tables for recipes, steps, and ingredients. You need to be able to see how long each individual step takes in minutes.
+10b) Write an SQL query to list all recipes that take longer than 1 hr, sorted from longest to shortest.
+10c) How would you populate these tables with random data for testing?
